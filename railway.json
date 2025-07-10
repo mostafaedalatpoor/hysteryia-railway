@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "GO111MODULE": "on"
+    }
+  }
+}
