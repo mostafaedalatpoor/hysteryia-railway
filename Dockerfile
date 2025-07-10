@@ -1,7 +1,8 @@
 FROM golang:alpine AS builder
 WORKDIR /app
 RUN apk add --no-cache git
-RUN git clone https://github.com/apernet/hysteria.git . && go build -o hysteria ./app/cmd/server
+RUN git clone https://github.com/apernet/hysteria.git . && go build -o hysteria ./cmd/server
+
 
 FROM alpine
 COPY --from=builder /app/hysteria /usr/bin/hysteria
