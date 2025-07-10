@@ -1,0 +1,11 @@
+listen: :80  # پورت Railway، به هیچ وجه تغییر نده مگر تنظیم کردی
+
+auth:
+  password: mostafa123  # رمز دلخواه برای اتصال کلاینت
+
+obfs:
+  type: salamander  # رمزنگاری ساده برای فرار از فیلترینگ
+
+bandwidth:
+  up: 100 mbps
+  down: 100 mbps
