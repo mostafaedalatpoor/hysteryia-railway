@@ -1,10 +1,14 @@
-FROM golang:alpine AS builder
-WORKDIR /app
-RUN apk add --no-cache git
-RUN git clone https://github.com/apernet/hysteria.git . && go build -o hysteria ./cmd/server
-
-
 FROM alpine
-COPY --from=builder /app/hysteria /usr/bin/hysteria
+
+# نصب ابزارهای موردنیاز
+RUN apk add --no-cache curl
+
+# دانلود آخرین نسخه Hysteria2 برای لینوکس
+RUN curl -L -o /usr/bin/hysteria https://github.com/apernet/hysteria/releases/latest/download/hysteria-linux-amd64 \
+    && chmod +x /usr/bin/hysteria
+
+# کپی فایل پیکربندی
 COPY config.yaml /etc/hysteria/config.yaml
-CMD ["hysteria", "-c", "/etc/hysteria/config.yaml"]
+
+# اجرای Hysteria2
+CMD ["hysteria", "server", "-c", "/etc/hysteria/config.yaml"]
